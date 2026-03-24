@@ -47,7 +47,7 @@ namespace mtp
 		~TrustedApp();
 
 		static TrustedAppPtr Create(const SessionPtr & session, const std::string &mtpzDataPath);
-		void Authenticate();
+		void Authenticate(bool openXnaSession = false);
 
 		bool KeysLoaded() const
 		{ return !!_keys; }

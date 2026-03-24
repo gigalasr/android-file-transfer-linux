@@ -381,7 +381,7 @@ namespace mtp
 		return supported;
 	}
 
-	void TrustedApp::Authenticate()
+	void TrustedApp::Authenticate(bool openXnaSession)
 	{
 		if (!_keys)
 			return;
@@ -408,7 +408,11 @@ namespace mtp
 		debug("authentication finished, enabling secure session...");
 		u32 cmac[4];
 		_keys->SignSessionRequest(cmac, cmacKey);
-		_session->EnableSecureFileOperations(cmac);
+		if(openXnaSession) {
+			_session->XnaOpenSession(cmac);
+		} else {
+			_session->EnableSecureFileOperations(cmac);
+		}
 		debug("handshake finished");
 	}
 

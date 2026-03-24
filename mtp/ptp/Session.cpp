@@ -17,6 +17,8 @@
     Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
+#include "mtp/ByteArray.h"
+#include "mtp/ptp/OperationCode.h"
 #include <mtp/ptp/Session.h>
 #include <mtp/ptp/Messages.h>
 #include <mtp/ptp/Container.h>
@@ -38,7 +40,7 @@ namespace mtp
 
 
 #define CHECK_RESPONSE(RCODE) do { \
-	if ((RCODE) != ResponseType::OK && (RCODE) != ResponseType::SessionAlreadyOpen) \
+	if ((RCODE) != ResponseType::OK && (RCODE) != ResponseType::XnaStatusOk && (RCODE) != ResponseType::SessionAlreadyOpen) \
 		throw InvalidResponseException(__func__, (RCODE)); \
 } while(false)
 
@@ -549,6 +551,15 @@ namespace mtp
 
 	void Session::EnableSecureFileOperations(u32 cmac[4])
 	{ RunTransaction(_defaultTimeout, OperationCode::EnableTrustedFilesOperations, cmac[0], cmac[1], cmac[2], cmac[3]); }
+
+	void Session::XnaOpenSession(u32 cmac[4]) {
+		RunTransaction(_defaultTimeout, OperationCode::XNAOpenSession, cmac[0], cmac[1], cmac[2], cmac[3]);
+	}
+
+	ByteArray Session::XnaPollData() {
+		return RunTransaction(_defaultTimeout, OperationCode::XNARecieveData);
+	}
+
 
 	void Session::RebootDevice()
 	{ RunTransaction(_defaultTimeout, OperationCode::RebootDevice); }

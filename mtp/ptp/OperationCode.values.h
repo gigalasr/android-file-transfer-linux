@@ -57,6 +57,11 @@ ENUM_VALUE(EnableTrustedFilesOperations, 0x9214)
 ENUM_VALUE(DisableTrustedFilesOperations, 0x9215)
 ENUM_VALUE(EndTrustedAppSession, 0x9216)
 
+ENUM_VALUE(XNAOpenSession,   0x9220)
+ENUM_VALUE(XNACloseSession,  0x9221)
+ENUM_VALUE(XNASendData,      0x9222)
+ENUM_VALUE(XNARecieveData,   0x9223)
+
 ENUM_VALUE(GetServiceIDs, 0x9301)
 ENUM_VALUE(GetServiceInfo, 0x9302)
 ENUM_VALUE(GetServiceCapabilities, 0x9303)

@@ -20,6 +20,7 @@
 #ifndef AFTL_MTP_PTP_SESSION_H
 #define AFTL_MTP_PTP_SESSION_H
 
+#include "mtp/ByteArray.h"
 #include <mtp/usb/BulkPipe.h>
 #include <mtp/ptp/Messages.h>
 #include <mtp/ptp/DeviceProperty.h>
@@ -145,6 +146,10 @@ namespace mtp
 		void EnableSecureFileOperations(u32 cmac1[4]);
 		void RebootDevice();
 
+		// XNA Specific
+		void XnaOpenSession(u32 cmac1[4]);
+		ByteArray XnaPollData();
+
 		static msg::DeviceInfo GetDeviceInfo(PipePacketer& packeter, u32 transactionId, int timeout = 0);
 
 	private:
@@ -173,4 +178,3 @@ namespace mtp
 }
 
 #endif	/* SESSION_H */
-
