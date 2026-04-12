@@ -148,6 +148,7 @@ namespace mtp
 
 		// XNA Specific
 		void XnaOpenSession();
+		void XnaCloseSession();
 		void XnaOpenSession(u32 cmac1[4]);
 		ByteArray XnaPollData();
 		ByteArray XnaSendData(const ByteArray &data);

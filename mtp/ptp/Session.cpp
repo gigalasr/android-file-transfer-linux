@@ -560,6 +560,10 @@ namespace mtp
 		RunTransaction(_defaultTimeout, OperationCode::XNAOpenSession);
 	}
 
+	void Session::XnaCloseSession() {
+		RunTransaction(_defaultTimeout, OperationCode::XNACloseSession);
+	}
+
 	ByteArray Session::XnaPollData() {
 		return RunTransaction(_defaultTimeout, OperationCode::XNARecieveData);
 	}
