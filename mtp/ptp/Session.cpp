@@ -556,8 +556,19 @@ namespace mtp
 		RunTransaction(_defaultTimeout, OperationCode::XNAOpenSession, cmac[0], cmac[1], cmac[2], cmac[3]);
 	}
 
+	void Session::XnaOpenSession() {
+		RunTransaction(_defaultTimeout, OperationCode::XNAOpenSession);
+	}
+
 	ByteArray Session::XnaPollData() {
 		return RunTransaction(_defaultTimeout, OperationCode::XNARecieveData);
+	}
+
+	ByteArray Session::XnaSendData(const ByteArray &data)
+	{
+		IObjectInputStreamPtr inputStream = std::make_shared<ByteArrayObjectInputStream>(data);
+		ByteArray response;
+		return RunTransactionWithDataRequest(_defaultTimeout, OperationCode::XNASendData, response, inputStream);
 	}
 
 

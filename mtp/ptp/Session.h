@@ -147,8 +147,11 @@ namespace mtp
 		void RebootDevice();
 
 		// XNA Specific
+		void XnaOpenSession();
 		void XnaOpenSession(u32 cmac1[4]);
 		ByteArray XnaPollData();
+		ByteArray XnaSendData(const ByteArray &data);
+
 
 		static msg::DeviceInfo GetDeviceInfo(PipePacketer& packeter, u32 transactionId, int timeout = 0);
 
